@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>航集市 | 登录</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/wishlist.css">
+<!--===============================================================================================-->
+</head>
+<body class="animsition">
+	
+	<!-- Header -->
+	<div th:replace="commons::header"></div>
+
+	<!-- Cart -->
+	<div th:replace="commons::cart"></div>
+
+	<!-- breadcrumb -->
+	<!-- <div class="container">
+		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+			<a th:href="@{/index}" class="stext-109 cl8 hov-cl1 trans-04">
+				Home
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+
+			<a th:href="@{/product}" class="stext-109 cl8 hov-cl1 trans-04">
+				Men
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+
+			<span class="stext-109 cl4">
+				Lightweight Jacket
+			</span>
+		</div>
+	</div> -->
+		
+	<section class="bg0 p-t-104 p-b-116">
+		<div class="container">
+			<div class="flex-c flex-tr">
+				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+					<form method="GET" action="/loginAction">
+						<h4 class="mtext-105 cl2 txt-center p-b-30">
+							请登录
+						</h4>
+
+						<div class="bor8 m-b-20 how-pos4-parent">
+							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="email" name="username" placeholder="请输入邮箱" required>
+							<!-- <img class="how-pos4 pointer-none" th:src="@{/images/icons/icon-email.png}" alt="ICON"> -->
+						</div>
+						<div class="bor8 m-b-20 how-pos4-parent">
+							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="password" name="password" placeholder="请输入密码" required>
+							<!-- <img class="how-pos4 pointer-none" th:src="@{/images/icons/icon-email.png}" alt="ICON"> -->
+						</div>
+<!--						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" type="submit" th:onclick="'isLogin()'">-->
+						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" type="submit" th:onclick="swal('登录成功')">
+							登录
+						</button>
+
+						<br>
+						<div class="form-group">
+							<div class="col">
+								<h6 class="mtext-20 cl2 txt-center p-b-30">还没有注册账户?<a th:href="@{/register}">注册</a></h6>
+							</div>
+						</div>
+					</form>
+				</div>
+
+
+
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Footer -->
+	<div th:replace="commons::footer"></div>
+	
+	
+		<!-- Back to top -->
+		<div class="btn-back-to-top" id="myBtn">
+			<span class="symbol-btn-back-to-top">
+				<i class="zmdi zmdi-chevron-up"></i>
+			</span>
+		</div>
+	
+	<!--===============================================================================================-->	
+		<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+	<!--===============================================================================================-->
+		<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
+	<!--===============================================================================================-->
+		<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+		<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+	<!--===============================================================================================-->
+		<script th:src="@{/vendor/select2/select2.min.js}"></script>
+		<script>
+			$(".js-select2").each(function(){
+				$(this).select2({
+					minimumResultsForSearch: 20,
+					dropdownParent: $(this).next('.dropDownSelect2')
+				});
+			})
+		</script>
+	<!--===============================================================================================-->
+		<script th:src="@{/vendor/MagnificPopup/jquery.magnific-popup.min.js}"></script>
+	<!--===============================================================================================-->
+		<script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+		<script>
+			$('.js-pscroll').each(function(){
+				$(this).css('position','relative');
+				$(this).css('overflow','hidden');
+				var ps = new PerfectScrollbar(this, {
+					wheelSpeed: 1,
+					scrollingThreshold: 1000,
+					wheelPropagation: false,
+				});
+	
+				$(window).on('resize', function(){
+					ps.update();
+				})
+			});
+		</script>
+	<!--===============================================================================================-->
+		<script th:src="@{/js/main.js}"></script>
+	<!--===============================================================================================-->
+		<script th:inline="javascript">
+			function isLogin(){
+				var s = [[${session.loginUser}]];
+				if (s === null) {
+					alert('用户名或密码错误，请重新登陆！');
+				}
+				else {
+					alert('登陆成功');
+				}
+			}
+		</script>
+		
+	</body>
+	</html>

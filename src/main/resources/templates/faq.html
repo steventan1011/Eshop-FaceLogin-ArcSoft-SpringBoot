@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>航集市 | 帮助</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.png" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/wishlist.css">
+    <!--===============================================================================================-->
+</head>
+
+<body class="animsition">
+
+    <!-- Header -->
+    <div th:replace="commons::header"></div>
+
+    <!-- Cart -->
+    <div th:replace="commons::cart"></div>
+
+
+    <!-- FAQ -->
+    <section id="faqs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 offset-lg-2 faq-new p-t-20">
+
+                    <h1 class="text-center">Frequently Asked Questions (FAQ)</h1>
+
+                    <!-- FAQ -->
+                    <div class="parent-container" style="padding: 10px 10px;">
+                        <ul class="faq">
+                            <li>
+                                <h3 class="question">Can I exchange my order?
+                                    <div class="plus-minus-toggle collapsed"></div>
+                                </h3>
+                                <div class="answer">We do not offer exchanges at this time. If you’d like to make an exchange, simply return the unused goods back to us using our returns page and make a new purchase for the item or items you want through our site.
+                                </div>
+                            </li>
+                            <li>
+                                <h3 class="question">How do I return my order?
+                                    <div class="plus-minus-toggle collapsed"></div>
+                                </h3>
+                                <div class="answer">Returns are accepted for all items within 30 days of purchase. Please visit our page to initiate the returns process.</div>
+                            </li>
+                            <li>
+                                <h3 class="question"> I received the wrong goods, what do I do?
+                                    <div class="plus-minus-toggle collapsed"></div>
+                                </h3>
+                                <div class="answer">Although we strive for perfection, we are human and sometimes the wrong items are shipped from our warehouses. We are so sorry for any inconvenience this has caused and our customer service team is here to help make things
+                                    right. Please contact our customer service team via phone, email, or our contact us page, so that they can work to get you your goods as soon as possible.</div>
+                            </li>
+                            <li>
+                                <h3 class="question"> Why is my shipment delayed?
+                                    <div class="plus-minus-toggle collapsed"></div>
+                                </h3>
+                                <div class="answer">We appreciate your patience and apologize for any delay. While we are still fulfilling orders ontime, due to the impact of COVID-19 carriers have experienced some shipping delays. 90% of our deliveries ship via USPS and
+                                    may be delayed. Keep an eye on your email for delivery updates.</div>
+                            </li>
+                            <li>
+                                <h3 class="question"> Why did I only receive part of my order?
+                                    <div class="plus-minus-toggle collapsed"></div>
+                                </h3>
+                                <div class="answer">Don't worry, it's on its way! While we do our best to ship all orders in one package, there are times when orders will ship from multiple warehouses. If you did not receive multiple tracking numbers, please reach out to
+                                    our customer service team for assistance.</div>
+                            </li>
+                            <li>
+                                <h3 class="question"> My discount code is not working, what do I do?
+                                    <div class="plus-minus-toggle collapsed"></div>
+                                </h3>
+                                <div class="answer">We are sorry you are having trouble checking out, please note that some discount codes require users to create an account on the site and be logged in upon check out to utilize the discount code.</div>
+                            </li>
+                            <li>
+                                <h3 class="question">Where can I find product sizing information?
+                                    <div class="plus-minus-toggle collapsed"></div>
+                                </h3>
+                                <div class="answer">Product sizing varies between different brands and styles. Product size information can be found toward the bottom of each product detail page as shown in the image below. Unless otherwise specified sizing is in inches
+                                    and is taken with the item lying flat.</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Footer -->
+    <div th:replace="commons::footer"></div>
+
+
+    <!-- Back to top -->
+    <div class="btn-back-to-top" id="myBtn">
+        <span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+    </div>
+
+    <!--===============================================================================================-->
+    <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+    <!--===============================================================================================-->
+    <script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
+    <!--===============================================================================================-->
+    <script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+    <!--===============================================================================================-->
+    <script th:src="@{/vendor/select2/select2.min.js}"></script>
+    <script>
+        $(".js-select2").each(function() {
+            $(this).select2({
+                minimumResultsForSearch: 20,
+                dropdownParent: $(this).next('.dropDownSelect2')
+            });
+        })
+    </script>
+    <!--===============================================================================================-->
+    <script th:src="@{/vendor/MagnificPopup/jquery.magnific-popup.min.js}"></script>
+    <!--===============================================================================================-->
+    <script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+    <script>
+        $('.js-pscroll').each(function() {
+            $(this).css('position', 'relative');
+            $(this).css('overflow', 'hidden');
+            var ps = new PerfectScrollbar(this, {
+                wheelSpeed: 1,
+                scrollingThreshold: 1000,
+                wheelPropagation: false,
+            });
+
+            $(window).on('resize', function() {
+                ps.update();
+            })
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script th:src="@{/js/main.js}"></script>
+
+    <script>
+        // Toggle Collapse
+        $('.faq li .question').click(function() {
+            $(this).find('.plus-minus-toggle').toggleClass('collapsed');
+            $(this).parent().toggleClass('active');
+        });
+    </script>
+
+</body>
+
+</html>

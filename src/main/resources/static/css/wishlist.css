@@ -1,0 +1,31 @@
+.header-cart {
+    width: 550px !important;
+}
+
+.closebtn {
+    margin-right: -150px !important;
+}
+
+.modal-content {
+    border: none !important;
+}
+
+.tableview {
+    width: 600px !important;
+    margin-left: -64px !important;
+    font-size: 13px;
+    padding: 20px 30px 0px 0px;
+}
+
+a:hover {
+    text-decoration: none !important;
+    color: #717fe0 !important;
+}
+
+.zmdi-favorite {
+    color: black !important;
+}
+
+#count-feild {
+    width: 50px !important;
+}
