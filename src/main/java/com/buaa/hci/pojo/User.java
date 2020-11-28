@@ -28,6 +28,8 @@ public class User {  // 这里的类名要和数据库中的表名一致（驼�
     private String email;
     @ApiModelProperty("用户密码")
     private String password;
+    @ApiModelProperty("用户照片")
+    private String photoname;
     @ApiModelProperty("用户昵称")
     private String name;
     @ApiModelProperty("用户手机")
