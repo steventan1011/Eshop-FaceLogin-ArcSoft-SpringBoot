@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>航集市 | 成功完成人脸登录</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/wishlist.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+<body class="animsition">
+
+<!-- Header -->
+<div th:replace="commons::header"></div>
+
+<!-- Cart -->
+<div th:replace="commons::cart"></div>
+
+<!-- breadcrumb -->
+<!-- <div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        <a th:href="@{/index}" class="stext-109 cl8 hov-cl1 trans-04">
+            Home
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+
+        <a th:href="@{/product}" class="stext-109 cl8 hov-cl1 trans-04">
+            Men
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+
+        <span class="stext-109 cl4">
+            Lightweight Jacket
+        </span>
+    </div>
+</div> -->
+
+<section class="bg0 p-t-104 p-b-116">
+    <div class="container">
+        <div class="flex-c flex-tr">
+            <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+                <form method="GET" th:action="@{/loginFaceAction}">
+                    <h4 class="mtext-105 cl2 txt-center p-b-30">
+                        恭喜，您已成功登录！
+                    </h4>
+                    <div class="form-row mb-4">
+                        您的邮箱：[[${email}]]
+                    </div>
+                    <div class="form-row mb-4">
+                        照片相似度：[[${similarity}]]
+                    </div>
+                    <div class="form-row mb-4">
+                        预测性别：[[${gender}]]
+                    </div>
+                    <div class="form-row mb-4">
+                        预测年龄：[[${age}]]
+                    </div>
+                    <div class="form-row mb-4">
+                        3D角度信息：[[${dimension}]]
+                    </div>
+                    <div class="form-row mb-4">
+                        RGB活体信息：[[${livenessInfo}]]
+                    </div>
+
+                    <div class="form-row mb-4">
+                        拍照图片：
+                        <img th:src="@{/faceImage/tmp/{face1}(face1=${face1})}" width="500px" height="500px" />
+                    </div>
+                    <div>
+                        数据库存储图片：
+                        <img th:src="@{/faceImage/{face2}(face2=${face2})}" width="500px" height="500px" />
+                    </div>
+
+                </form>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer -->
+<div th:replace="commons::footer"></div>
+
+
+<!-- Back to top -->
+<div class="btn-back-to-top" id="myBtn">
+			<span class="symbol-btn-back-to-top">
+				<i class="zmdi zmdi-chevron-up"></i>
+			</span>
+</div>
+
+<!--===============================================================================================-->
+<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/select2/select2.min.js}"></script>
+<script>
+    $(".js-select2").each(function(){
+        $(this).select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $(this).next('.dropDownSelect2')
+        });
+    })
+</script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/MagnificPopup/jquery.magnific-popup.min.js}"></script>
+<!--===============================================================================================-->
+<script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+<script>
+    $('.js-pscroll').each(function(){
+        $(this).css('position','relative');
+        $(this).css('overflow','hidden');
+        var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+        });
+
+        $(window).on('resize', function(){
+            ps.update();
+        })
+    });
+</script>
+<!--===============================================================================================-->
+<script th:src="@{/js/main.js}"></script>
+<!--===============================================================================================-->
+<script th:inline="javascript">
+    function isLogin(){
+        var s = [[${session.loginUser}]];
+        if (s === null) {
+            alert('用户名或密码错误，请重新登陆！');
+        }
+        else {
+            alert('登陆成功');
+        }
+    }
+</script>
+<!--===============================================================================================-->
+<script>
+    //获得video摄像头区域
+    let video = document.getElementById("video");
+
+    function getMedia() {
+        let constraints = {
+            video: {
+                width: 500,
+                height: 500
+            },
+            audio: true
+        };
+        /*
+        这里介绍新的方法:H5新媒体接口 navigator.mediaDevices.getUserMedia()
+        这个方法会提示用户是否允许媒体输入,(媒体输入主要包括相机,视频采集设备,屏幕共享服务,麦克风,A/D转换器等)
+        返回的是一个Promise对象。
+        如果用户同意使用权限,则会将 MediaStream对象作为resolve()的参数传给then()
+        如果用户拒绝使用权限,或者请求的媒体资源不可用,则会将 PermissionDeniedError作为reject()的参数传给catch()
+        */
+        let promise = navigator.mediaDevices.getUserMedia(constraints);
+        promise.then(function(MediaStream) {
+            video.srcObject = MediaStream;
+            video.play();
+        }).catch(function(PermissionDeniedError) {
+            console.log(PermissionDeniedError);
+        })
+    }
+
+    function takePhoto() {
+        //获得Canvas对象
+        let canvas = document.getElementById("canvas");
+        let ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, 500, 500);
+        ImageData = canvas.toDataURL();
+        var photo = ImageData.substr(22);
+        document.getElementById("photo").value = photo;
+    }
+
+</script>
+
+</body>
+</html>

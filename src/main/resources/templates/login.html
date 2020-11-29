@@ -67,7 +67,7 @@
 		<div class="container">
 			<div class="flex-c flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-					<form method="GET" action="/loginAction">
+					<form method="GET" th:action="@{/loginAction}">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							请登录
 						</h4>
@@ -84,7 +84,10 @@
 						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" type="submit" th:onclick="swal('登录成功')">
 							登录
 						</button>
-
+						<br>
+						<a class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" th:href="@{/loginFace}">
+							忘记密码? 尝试人脸登录
+						</a>
 						<br>
 						<div class="form-group">
 							<div class="col">

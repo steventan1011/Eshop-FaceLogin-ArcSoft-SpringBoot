@@ -1,6 +1,11 @@
 package com.buaa.hci.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.buaa.hci.mapper.UserMapper;
+import com.buaa.hci.pojo.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,23 +21,18 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @Slf4j
 public class WebController {
+    @Autowired
+    UserMapper userMapper;
+
     @GetMapping({"/index", ""})
     public String index(HttpServletRequest request, Model model) {
-//        Object loginUser = request.getSession().getAttribute("loginUser");
-//        if (request.getSession().getAttribute("loginInfo") == null)
-//            if (loginUser != null)
-//                request.getSession().setAttribute("loginInfo", "true");
-//        else {
-//            request.getSession().setAttribute("loginInfo", "false");
-//        }
-//        log.info((String) request.getSession().getAttribute("loginInfo"));
+        QueryWrapper<User> userQueryWrapper = Wrappers.query();
+        Integer count = userMapper.selectCount(userQueryWrapper);
+        log.info(String.valueOf(count));
         return "index";
     }
 
-    @GetMapping("/register")
-    public String register(Model model) {
-        return "register";
-    }
+
 
     @GetMapping("/product")
     public String product(Model model) {

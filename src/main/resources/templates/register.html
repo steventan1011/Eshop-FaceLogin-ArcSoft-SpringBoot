@@ -35,6 +35,25 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/wishlist.css">
 <!--===============================================================================================-->
+	<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<!--	<style type="text/css">-->
+<!--		#canvas, #video {-->
+<!--			position: absolute;-->
+<!--			left: 450px;-->
+<!--			top: 100px;-->
+<!--		}-->
+<!--		#input {-->
+<!--			position: absolute;-->
+<!--			left: 400px;-->
+<!--			top: 650px;-->
+<!--		}-->
+
+<!--		#snap {-->
+<!--			position: absolute;-->
+<!--			left: 950px;-->
+<!--			top: 650px;-->
+<!--		}-->
+<!--	</style>-->
 </head>
 <body class="animsition">
 	
@@ -49,14 +68,14 @@
 			<div class="container">
 				<div class="flex-c flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-					<form method="GET" action="login.html">
+					<form method="POST" th:action="@{/registerAction}">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							请注册
                         </h4>
 							<div class="form-row mb-4">
-								<div class="col">
-									 <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="昵称" required>
-								</div>
+<!--								<div class="col">-->
+<!--									 <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="昵称" required>-->
+<!--								</div>-->
 <!--								<div class="col">-->
 <!--									<input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="名" required>-->
 <!--								</div>-->
@@ -65,43 +84,50 @@
 								<div class="col">
 									<!-- Email -->
 
-									 <input type="text" id="defaultRegisterFormEmail" class="form-control" placeholder="邮箱" required='should not contain capitals'>
+									 <input type="email" name="username"  id="defaultRegisterFormEmail" class="form-control" placeholder="邮箱" required='should not contain capitals'>
 
 								</div>
 							</div>
 							<div class="form-row mb-4">
 								<div class="col">
 									<!-- Phone -->
-									 <input type="text" id="defaultRegisterFormPhone" class="form-control" placeholder="手机" required>
-								</div>
-								<div class="col">
-									<!-- Gender -->
-									<select class="browser-default custom-select" id="defaultRegisterFormSelect" required>
-										<option selected>性别</option>
-										<option value="1">男</option>
-										<option value="2">女</option>
-									  </select>
+									<input type="text" name="phone" id="defaultRegisterFormPhone" class="form-control" placeholder="手机" required>
 								</div>
 							</div>
-							<div class="form-row mb-7">
-								<div class="col">
-									<!-- Address -->
-									<input type="text" id="defaultRegisterFormCity" class="form-control" placeholder="城市" required>
-								</div>
-								<div class="col">
-									<!--City-->
-									<input type="text" id="defaultRegisterFormStreet" class="form-control" placeholder="地址" required>
-								</div>
-								<div class="col">
-									<!--Zip-->
-									<input type="text" id="defaultRegisterFormZip" class="form-control" placeholder="邮编" required>
-								</div>
-							</div>
-							<br>
+
+<!--							<div class="form-row mb-4">-->
+<!--								<div class="col">-->
+<!--									&lt;!&ndash; Phone &ndash;&gt;-->
+<!--									 <input type="text" id="defaultRegisterFormPhone" class="form-control" placeholder="手机" required>-->
+<!--								</div>-->
+<!--								<div class="col">-->
+<!--									&lt;!&ndash; Gender &ndash;&gt;-->
+<!--									<select class="browser-default custom-select" id="defaultRegisterFormSelect" required>-->
+<!--										<option selected>性别</option>-->
+<!--										<option value="1">男</option>-->
+<!--										<option value="2">女</option>-->
+<!--									  </select>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--							<div class="form-row mb-7">-->
+<!--								<div class="col">-->
+<!--									&lt;!&ndash; Address &ndash;&gt;-->
+<!--									<input type="text" id="defaultRegisterFormCity" class="form-control" placeholder="城市" required>-->
+<!--								</div>-->
+<!--								<div class="col">-->
+<!--									&lt;!&ndash;City&ndash;&gt;-->
+<!--									<input type="text" id="defaultRegisterFormStreet" class="form-control" placeholder="地址" required>-->
+<!--								</div>-->
+<!--								<div class="col">-->
+<!--									&lt;!&ndash;Zip&ndash;&gt;-->
+<!--									<input type="text" id="defaultRegisterFormZip" class="form-control" placeholder="邮编" required>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--							<br>-->
 							<div class="form-row mb-4">
 								<div class="col">
 									<!-- Password -->
-									 <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="密码（最少8位）" minlength="8" required>
+									 <input type="password" name="password" id="defaultRegisterFormPassword" class="form-control" placeholder="密码（最少8位）" minlength="8" required>
 								</div>
 								<div class="col">
 									<!-- Re-Password -->
@@ -109,9 +135,22 @@
 								</div>
 							</div>
 
+							<div class="form-row mb-4">
+								<div class="col">
+									<input id="input" type="button" title="开启摄像头" value="开启摄像头" onclick="getMedia()"/>
+								</div>
+								<div class="col">
+									<input id="snap" type="button" title="拍照保存" value="拍照保存" onclick="takePhoto()"/>
+								</div>
+								<video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+								<canvas id="canvas" width="500px" height="500px"></canvas>
+								<input id="photo" name="photo" type="hidden">
+							</div>
+
+
+
 <!--							<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer register js-register" onclick="swal('ok')">-->
 							<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer register">
-
 								注册
 							</button>
 
@@ -354,7 +393,45 @@
 <!--============================================================================-->
 
 <!--==================================================================================-->
+	<script>
+		//获得video摄像头区域
+		let video = document.getElementById("video");
 
+		function getMedia() {
+			let constraints = {
+				video: {
+					width: 500,
+					height: 500
+				},
+				audio: true
+			};
+			/*
+            这里介绍新的方法:H5新媒体接口 navigator.mediaDevices.getUserMedia()
+            这个方法会提示用户是否允许媒体输入,(媒体输入主要包括相机,视频采集设备,屏幕共享服务,麦克风,A/D转换器等)
+            返回的是一个Promise对象。
+            如果用户同意使用权限,则会将 MediaStream对象作为resolve()的参数传给then()
+            如果用户拒绝使用权限,或者请求的媒体资源不可用,则会将 PermissionDeniedError作为reject()的参数传给catch()
+            */
+			let promise = navigator.mediaDevices.getUserMedia(constraints);
+			promise.then(function(MediaStream) {
+				video.srcObject = MediaStream;
+				video.play();
+			}).catch(function(PermissionDeniedError) {
+				console.log(PermissionDeniedError);
+			})
+		}
+
+		function takePhoto() {
+			//获得Canvas对象
+			let canvas = document.getElementById("canvas");
+			let ctx = canvas.getContext('2d');
+			ctx.drawImage(video, 0, 0, 500, 500);
+			ImageData = canvas.toDataURL();
+			var photo = ImageData.substr(22);
+			document.getElementById("photo").value = photo;
+		}
+
+	</script>
 
 </body>
 </html>
