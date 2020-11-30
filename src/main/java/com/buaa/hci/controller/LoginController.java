@@ -42,7 +42,7 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping(value = "/loginAction")
+    @PostMapping(value = "/loginAction")
     public String loginAction(@RequestParam("username") String username,
                             @RequestParam("password") String password,
                             Model model,
@@ -57,7 +57,7 @@ public class LoginController {
         List<User> userList = userMapper.selectList(userQueryWrapper);   // 查询多个数据 selectList
 
         if (userList == null || userList.isEmpty()) {  //登陆失败
-            model.addAttribute("msg", "用户名密码错误");
+            model.addAttribute("msg", "用户名或密码错误，请重新登录");
             return "login";
         } else {
             session.setAttribute("loginUser", username);
@@ -125,7 +125,7 @@ public class LoginController {
             return "success-login-face";
         }
         else {   // 登录失败
-            model.addAttribute("loginFail", "未找到相似人脸，请重新登录");
+            model.addAttribute("loginFail", "您未注册人脸信息，请注册或重新登陆");
             return "login-face";
         }
 

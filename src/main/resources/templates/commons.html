@@ -58,7 +58,7 @@
                             <a th:href="@{/product}">市集</a>
                         </li>
                         <li th:class="${activeUri=='offer-page.html'?'active-menu label1':'label1'}"  data-label1="hot">
-                            <a th:href="@{/offer-page}">活动</a>
+                            <a th:href="@{/index}">活动</a>
                         </li>
 
                         <li th:class="${activeUri=='contact.html'?'active-menu':''}">
@@ -69,6 +69,11 @@
 
                 <!-- Icon header -->
                 <div class="wrap-icon-header flex-w flex-r-m h-full">
+                    <div class="menu-desktop">
+                        <div class="main-menu" th:if="${session.loginUser!=null}">
+                            欢迎您，[[${session.loginUser}]]
+                        </div>
+                    </div>
                     <div class="flex-c-m h-full p-r-24">
                         <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
                             <i class="zmdi zmdi-search"></i>
@@ -86,7 +91,7 @@
 <!--                    <div th:class="${activeUri=='wishlist.html'?'active-menu':''}">-->
                         <div class="flex-c-m h-full p-r-24">
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11">
-                                <a th:href="@{/wishlist}" class="zmdi zmdi-favorite"></a>
+                                <a th:href="@{/shoping-cart}" class="zmdi zmdi-favorite"></a>
                             </div>
                         </div>
 <!--                    </div>-->
@@ -265,20 +270,20 @@
 
                 <ul>
                     <li class="p-b-10">
-                        <a th:href="@{/order-tracking}" class="stext-107 cl7 hov-cl1 trans-04">
-                            微博号：@航集市
+                        <a class="stext-107 cl7 hov-cl1 trans-04">
+                            微博号：航集市
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a th:href="@{/profile}" class="stext-107 cl7 hov-cl1 trans-04">
-                            公众号：@航集市
+                        <a class="stext-107 cl7 hov-cl1 trans-04">
+                            公众号：航集市
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a th:href="@{/wishlist}" class="stext-107 cl7 hov-cl1 trans-04">
-                            bilibili：航小柿
+                        <a class="stext-107 cl7 hov-cl1 trans-04">
+                            bilibili：@航小柿
                         </a>
                     </li>
 

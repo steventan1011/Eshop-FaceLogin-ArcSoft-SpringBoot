@@ -41,9 +41,17 @@ public class RegisterController {
     @PostMapping("/registerAction")
     public String registerAction(@RequestParam("username") String username,
                                  @RequestParam("password") String password,
-                                 @RequestParam("phone") String phone,
                                  @RequestParam("photo") String photo,
                                  Model model) throws IOException {
+        // 找是否有重复email的
+        QueryWrapper<User> userQueryWrapper = Wrappers.query();
+        userQueryWrapper.eq("email", username);
+        User user0 = userMapper.selectOne(userQueryWrapper);
+        if (user0 != null) {
+            model.addAttribute("msg", "抱歉，" + username + " 已注册");
+            return "register";
+        }
+
         Base64Req base64Req = new Base64Req();
         base64Req.setBase64(photo);
         baseToImg.GenerateImage(base64Req.getBase64(), ResourceUtils.getURL("src\\main\\resources\\static\\faceImage").getPath() + "\\" + username + ".png");
@@ -51,7 +59,6 @@ public class RegisterController {
         User user = new User();
         user.setEmail(username);
         user.setPassword(password);
-        user.setPhone(phone);
         user.setPhotoname(username + ".png");
         int insert = userMapper.insert(user);
 

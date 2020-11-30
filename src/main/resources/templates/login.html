@@ -67,11 +67,13 @@
 		<div class="container">
 			<div class="flex-c flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-					<form method="GET" th:action="@{/loginAction}">
+					<form method="POST" th:action="@{/loginAction}">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							请登录
 						</h4>
-
+						<h5 class="txt-center" th:if="${msg}">
+							[[${msg}]]
+						</h5>
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="email" name="username" placeholder="请输入邮箱" required>
 							<!-- <img class="how-pos4 pointer-none" th:src="@{/images/icons/icon-email.png}" alt="ICON"> -->
@@ -85,11 +87,13 @@
 							登录
 						</button>
 						<br>
-						<a class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" th:href="@{/loginFace}">
-							忘记密码? 尝试人脸登录
-						</a>
-						<br>
+<!--						<a id="face-login" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" th:href="@{/loginFace}">-->
+<!--							忘记密码? 尝试人脸登录-->
+<!--						</a>-->
 						<div class="form-group">
+							<div class="col">
+								<h6 class="mtext-20 cl2 txt-center p-b-30">忘记密码?<a th:href="@{/loginFace}">尝试人脸登录</a></h6>
+							</div>
 							<div class="col">
 								<h6 class="mtext-20 cl2 txt-center p-b-30">还没有注册账户?<a th:href="@{/register}">注册</a></h6>
 							</div>
@@ -165,6 +169,5 @@
 				}
 			}
 		</script>
-		
 	</body>
-	</html>
+</html>

@@ -54,6 +54,34 @@
 <!--			top: 650px;-->
 <!--		}-->
 <!--	</style>-->
+	<style>
+		.btn {
+			display: inline-block;
+			padding: 6px 12px;
+			margin-bottom: 0;
+			font-size: 14px;
+			font-weight: normal;
+			line-height: 1.42857143;
+			text-align: center;
+			white-space: nowrap;
+			vertical-align: middle;
+			-ms-touch-action: manipulation;
+			touch-action: manipulation;
+			cursor: pointer;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			background-image: none;
+			border: 1px solid transparent;
+			border-radius: 4px;
+		}
+		.btn-info {
+			color: #fff;
+			background-color: #5bc0de;
+			border-color: #46b8da;
+		}
+	</style>
 </head>
 <body class="animsition">
 	
@@ -72,6 +100,9 @@
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
 							请注册
                         </h4>
+						<h5 class=""txt-center>
+							[[${msg}]]
+						</h5>
 							<div class="form-row mb-4">
 <!--								<div class="col">-->
 <!--									 <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="昵称" required>-->
@@ -88,12 +119,12 @@
 
 								</div>
 							</div>
-							<div class="form-row mb-4">
-								<div class="col">
-									<!-- Phone -->
-									<input type="text" name="phone" id="defaultRegisterFormPhone" class="form-control" placeholder="手机" required>
-								</div>
-							</div>
+<!--							<div class="form-row mb-4">-->
+<!--								<div class="col">-->
+<!--									&lt;!&ndash; Phone &ndash;&gt;-->
+<!--									<input type="text" name="phone" id="defaultRegisterFormPhone" class="form-control" placeholder="手机" required>-->
+<!--								</div>-->
+<!--							</div>-->
 
 <!--							<div class="form-row mb-4">-->
 <!--								<div class="col">-->
@@ -137,10 +168,10 @@
 
 							<div class="form-row mb-4">
 								<div class="col">
-									<input id="input" type="button" title="开启摄像头" value="开启摄像头" onclick="getMedia()"/>
+									<input class="btn btn-info" id="input" type="button" title="开启摄像头" value="开启摄像头" onclick="getMedia()"/>
 								</div>
 								<div class="col">
-									<input id="snap" type="button" title="拍照保存" value="拍照保存" onclick="takePhoto()"/>
+									<input class="btn btn-info" id="snap" type="button" title="拍照并保存" value="拍照并保存" onclick="takePhoto()"/>
 								</div>
 								<video id="video" width="500px" height="500px" autoplay="autoplay"></video>
 								<canvas id="canvas" width="500px" height="500px"></canvas>

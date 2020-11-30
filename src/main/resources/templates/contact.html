@@ -43,9 +43,9 @@
 
 
     <!-- Title page -->
-    <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
+    <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-02.png');">
         <h2 class="ltext-105 cl0 txt-center">
-            Contact
+            请联系我们
         </h2>
     </section>
 
@@ -57,25 +57,25 @@
                 <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
                     <form>
                         <h4 class="mtext-105 cl2 txt-center p-b-30">
-                            Send Us A Message
+                            请给我们您的反馈
                         </h4>
 
                         <div class="bor8 m-b-20 how-pos4-parent">
-                            <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Your Email Address">
+                            <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="您的邮箱地址">
                             <img class="how-pos4 pointer-none" th:src="@{/images/icons/icon-email.png}" alt="ICON">
                         </div>
 
                         <div class="bor8 m-b-30">
-                            <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="How Can We Help?"></textarea>
+                            <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="请问有什么可以帮助您?"></textarea>
                         </div>
 
                         <button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-							Submit
-						</button>
+                            提交
+                        </button>
                     </form>
                 </div>
 
-                <div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
+                <div class="size-210 bor10 flex-w flex-col-m p-lr-40 p-tb-30 p-lr-15-lg w-full-md">
                     <div class="flex-w w-full p-b-42">
                         <span class="fs-18 cl5 txt-center size-211">
 							<span class="lnr lnr-map-marker"></span>
@@ -83,11 +83,11 @@
 
                         <div class="size-212 p-t-2">
                             <span class="mtext-110 cl2">
-								Address
+								地址
 							</span>
 
-                            <p class="stext-115 cl6 size-213 p-t-18">
-                                8th floor, 379 Hudson St, Sri Lanka
+                            <p class="stext-115 cl6 size-219 p-t-18">
+                                北京市海淀区学院路37号北京航空航天大学11楼
                             </p>
                         </div>
                     </div>
@@ -99,11 +99,11 @@
 
                         <div class="size-212 p-t-2">
                             <span class="mtext-110 cl2">
-								Lets Talk
+								联系电话
 							</span>
 
                             <p class="stext-115 cl1 size-213 p-t-18">
-                                (+94) 78 7988 613
+                                (+86) 138 8888 8888
                             </p>
                         </div>
                     </div>
@@ -115,11 +115,11 @@
 
                         <div class="size-212 p-t-2">
                             <span class="mtext-110 cl2">
-								Sale Support
+								邮箱地址
 							</span>
 
                             <p class="stext-115 cl1 size-213 p-t-18">
-                                Hawaiiclothing@gmail.com
+                                hangjishi@buaa.edu.com
                             </p>
                         </div>
                     </div>
@@ -129,153 +129,8 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg3 p-t-75 p-b-32">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-lg-3 p-b-50">
-                    <h4 class="stext-301 cl0 p-b-30">
-                        Categories
-                    </h4>
+    <div th:replace="commons::footer"></div>
 
-                    <ul>
-                        <li class="p-b-10">
-                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Women
-							</a>
-                        </li>
-
-                        <li class="p-b-10">
-                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Men
-							</a>
-                        </li>
-
-                        <li class="p-b-10">
-                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shoes
-							</a>
-                        </li>
-
-                        <li class="p-b-10">
-                            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Watches
-							</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-sm-6 col-lg-3 p-b-50">
-                    <h4 class="stext-301 cl0 p-b-30">
-                        Help
-                    </h4>
-
-                    <ul>
-                        <li class="p-b-10">
-                            <a th:href="@{/order-tracking}" class="stext-107 cl7 hov-cl1 trans-04">
-								Track Order
-							</a>
-                        </li>
-
-                        <li class="p-b-10">
-                            <a th:href="@{/profile}" class="stext-107 cl7 hov-cl1 trans-04">
-								My Account
-							</a>
-                        </li>
-
-                        <li class="p-b-10">
-                            <a th:href="@{/wishlist}" class="stext-107 cl7 hov-cl1 trans-04">
-								Wishlist
-							</a>
-                        </li>
-
-                        <li class="p-b-10">
-                            <a th:href="@{/faq}" class="stext-107 cl7 hov-cl1 trans-04">
-								FAQs
-							</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-sm-6 col-lg-3 p-b-50">
-                    <h4 class="stext-301 cl0 p-b-30">
-                        GET IN TOUCH
-                    </h4>
-
-                    <p class="stext-107 cl7 size-201">
-                        Any questions? Let us know in store at 8th floor, 379 Hudson St, Sri Lanka or call us on (+94) 78 7988 613</p>
-                    </p>
-
-                    <div class="p-t-27">
-                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-
-                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                            <i class="fa fa-instagram"></i>
-                        </a>
-
-                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                            <i class="fa fa-pinterest-p"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-lg-3 p-b-50">
-                    <h4 class="stext-301 cl0 p-b-30">
-                        Newsletter
-                    </h4>
-
-                    <form>
-                        <div class="wrap-input1 w-full p-b-4">
-                            <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="Hawaiiclothing@gmail.com">
-                            <div class="focus-input1 trans-04"></div>
-                        </div>
-
-                        <div class="p-t-18">
-                            <button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-								Subscribe
-							</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="p-t-40">
-                <div class="flex-c-m flex-w p-b-18">
-                    <a href="#" class="m-all-1">
-                        <img th:src="@{/images/icons/icon-pay-01.png}" alt="ICON-PAY">
-                    </a>
-
-                    <a href="#" class="m-all-1">
-                        <img th:src="@{/images/icons/icon-pay-02.png}" alt="ICON-PAY">
-                    </a>
-
-                    <a href="#" class="m-all-1">
-                        <img th:src="@{/images/icons/icon-pay-03.png}" alt="ICON-PAY">
-                    </a>
-
-                    <a href="#" class="m-all-1">
-                        <img th:src="@{/images/icons/icon-pay-04.png}" alt="ICON-PAY">
-                    </a>
-
-                    <a href="#" class="m-all-1">
-                        <img th:src="@{/images/icons/icon-pay-05.png}" alt="ICON-PAY">
-                    </a>
-                </div>
-
-                <p class="stext-107 cl6 txt-center">
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;
-                    <script>
-                        document.write(new Date().getFullYear());
-                    </script> All rights reserved by Hawaii Clothing <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    <a href="#" target="_blank"></a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-
-                </p>
-            </div>
-        </div>
-    </footer>
 
 
     <!-- Back to top -->
