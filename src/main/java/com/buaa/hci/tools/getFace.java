@@ -26,12 +26,17 @@ import static com.arcsoft.face.toolkit.ImageFactory.getRGBData;
 
 @Slf4j
 public class getFace {
-//    @Autowired
-//    UserMapper userMapper;
+    //从官网获取
+    // laptop
+//    private static String appId = "FiF5cBCTvCfxFV5NE5f9fSJrwVLKAp2TH1d9MVYdNNe2";
+//    private static String sdkKey = "DZmvFhHkHA4vNDGyLSaZ2QwqQYQ2xHRVMdYfkA7BXV84";
+    // lab computer
+    private static String appId = "8mifisFsyLfPshZ3kwD9dH3ZrY1BgnEGKaNNvGHjjSET";
+    private static String sdkKey = "5hm1KujKsW8Rq9y3BB5GkWWinFEXXdV5ZgrPhqARBcpF";
 
     public static String faceconfig;
-    public static String face1;
-    public static String face2;
+    public static String face1;   // tmp文件夹内的 登录用
+    public static String face2;   // 遍历所有存储的图片
     public static String face1Name;
 
     static {
@@ -44,7 +49,10 @@ public class getFace {
         }
     }
 
-    public  int i = 2;
+    public int i = 2;
+
+    public getFace() {
+    }
 
     public getFace(String face1) throws FileNotFoundException {
         this.face1 = ResourceUtils.getURL("src\\main\\resources\\static\\faceImage\\tmp").getPath() + "\\" + face1;
@@ -54,17 +62,58 @@ public class getFace {
     private ApplicationContext applicationContext = SpringUtil.getApplicationContext();
     private UserMapper userMapper = applicationContext.getBean(com.buaa.hci.mapper.UserMapper.class);
 
+    public int registerDetectFaceNum(String faceName) throws FileNotFoundException {
+        String face = ResourceUtils.getURL("src\\main\\resources\\static\\faceImage").getPath() + "\\" + faceName;
+
+        FaceEngine faceEngine = new FaceEngine(faceconfig);
+        //激活引擎
+        int errorCode = faceEngine.activeOnline(appId, sdkKey);
+        log.info(String.valueOf(errorCode));
+        if (errorCode != ErrorInfo.MOK.getValue() && errorCode != ErrorInfo.MERR_ASF_ALREADY_ACTIVATED.getValue()) {
+            System.out.println("引擎激活失败");
+        }
+        ActiveFileInfo activeFileInfo = new ActiveFileInfo();
+        errorCode = faceEngine.getActiveFileInfo(activeFileInfo);
+        if (errorCode != ErrorInfo.MOK.getValue() && errorCode != ErrorInfo.MERR_ASF_ALREADY_ACTIVATED.getValue()) {
+            System.out.println("获取激活文件信息失败");
+        }
+        //引擎配置
+        EngineConfiguration engineConfiguration = new EngineConfiguration();
+        engineConfiguration.setDetectMode(DetectMode.ASF_DETECT_MODE_IMAGE);
+        engineConfiguration.setDetectFaceOrientPriority(DetectOrient.ASF_OP_ALL_OUT);
+        engineConfiguration.setDetectFaceMaxNum(10);
+        engineConfiguration.setDetectFaceScaleVal(16);
+        //功能配置
+        FunctionConfiguration functionConfiguration = new FunctionConfiguration();
+        functionConfiguration.setSupportAge(true);
+        functionConfiguration.setSupportFace3dAngle(true);
+        functionConfiguration.setSupportFaceDetect(true);
+        functionConfiguration.setSupportFaceRecognition(true);
+        functionConfiguration.setSupportGender(true);
+        functionConfiguration.setSupportLiveness(true);
+        functionConfiguration.setSupportIRLiveness(true);
+        engineConfiguration.setFunctionConfiguration(functionConfiguration);
+        //初始化引擎
+        errorCode = faceEngine.init(engineConfiguration);
+
+        if (errorCode != ErrorInfo.MOK.getValue()) {
+            System.out.println("初始化引擎失败");
+        }
+
+        //人脸检测1
+        ImageInfo imageInfo = getRGBData(new File(face));
+        List<FaceInfo> faceInfoList = new ArrayList<FaceInfo>();
+        errorCode = faceEngine.detectFaces(imageInfo.getImageData(), imageInfo.getWidth(), imageInfo.getHeight(), imageInfo.getImageFormat(), faceInfoList);
+        System.out.println(faceInfoList);
+        return faceInfoList.size();
+
+    }
+
     public HashMap<String, Object> faceCompare() throws FileNotFoundException {
 
         HashMap<String, Object> result = new HashMap<>();
         result.put("flag", false);
-        //从官网获取
-        // laptop
-//        String appId = "FiF5cBCTvCfxFV5NE5f9fSJrwVLKAp2TH1d9MVYdNNe2";
-//        String sdkKey = "DZmvFhHkHA4vNDGyLSaZ2QwqQYQ2xHRVMdYfkA7BXV84";
-        // lab computer
-        String appId = "8mifisFsyLfPshZ3kwD9dH3ZrY1BgnEGKaNNvGHjjSET";
-        String sdkKey = "5hm1KujKsW8Rq9y3BB5GkWWinFEXXdV5ZgrPhqARBcpF";
+
         FaceEngine faceEngine = new FaceEngine(faceconfig);
         //激活引擎
         int errorCode = faceEngine.activeOnline(appId, sdkKey);
@@ -105,6 +154,9 @@ public class getFace {
         List<FaceInfo> faceInfoList = new ArrayList<FaceInfo>();
         errorCode = faceEngine.detectFaces(imageInfo.getImageData(), imageInfo.getWidth(), imageInfo.getHeight(), imageInfo.getImageFormat(), faceInfoList);
         System.out.println(faceInfoList);
+        result.put("faceNum", faceInfoList.size());
+        if (faceInfoList.size() == 0 || faceInfoList.size() > 1)
+            return result;
 
         //特征提取1
         FaceFeature faceFeature = new FaceFeature();
@@ -195,7 +247,7 @@ public class getFace {
                     return result;
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             }
 
             i++;

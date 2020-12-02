@@ -21,18 +21,10 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @Slf4j
 public class WebController {
-    @Autowired
-    UserMapper userMapper;
-
     @GetMapping({"/index", ""})
     public String index(HttpServletRequest request, Model model) {
-        QueryWrapper<User> userQueryWrapper = Wrappers.query();
-        Integer count = userMapper.selectCount(userQueryWrapper);
-        log.info(String.valueOf(count));
         return "index";
     }
-
-
 
     @GetMapping("/product")
     public String product(Model model) {
@@ -61,7 +53,7 @@ public class WebController {
 
     @GetMapping("/offer-page")
     public String offerPage(Model model) {
-        return "offer-page";
+        return "offfaer-page";
     }
 
     @GetMapping("/order-tracking")

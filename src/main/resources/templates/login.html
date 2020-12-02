@@ -4,7 +4,7 @@
 	<title>航集市 | 登录</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -16,13 +16,13 @@
 	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
@@ -37,7 +37,7 @@
 <!--===============================================================================================-->
 </head>
 <body class="animsition">
-	
+
 	<!-- Header -->
 	<div th:replace="commons::header"></div>
 
@@ -62,18 +62,19 @@
 			</span>
 		</div>
 	</div> -->
-		
+
 	<section class="bg0 p-t-104 p-b-116">
+		<div class="js-login" th:if="${msg}!=null"></div>
 		<div class="container">
 			<div class="flex-c flex-tr">
 				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
 					<form method="POST" th:action="@{/loginAction}">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
+<!--							<p>-->
+<!--								[[${msg}]]-->
+<!--							</p>-->
 							请登录
 						</h4>
-						<h5 class="txt-center" th:if="${msg}">
-							[[${msg}]]
-						</h5>
 						<div class="bor8 m-b-20 how-pos4-parent">
 							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="email" name="username" placeholder="请输入邮箱" required>
 							<!-- <img class="how-pos4 pointer-none" th:src="@{/images/icons/icon-email.png}" alt="ICON"> -->
@@ -83,7 +84,7 @@
 							<!-- <img class="how-pos4 pointer-none" th:src="@{/images/icons/icon-email.png}" alt="ICON"> -->
 						</div>
 <!--						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" type="submit" th:onclick="'isLogin()'">-->
-						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" type="submit" th:onclick="swal('登录成功')">
+						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" type="submit">
 							登录
 						</button>
 						<br>
@@ -110,16 +111,16 @@
 
 	<!-- Footer -->
 	<div th:replace="commons::footer"></div>
-	
-	
+
+
 		<!-- Back to top -->
 		<div class="btn-back-to-top" id="myBtn">
 			<span class="symbol-btn-back-to-top">
 				<i class="zmdi zmdi-chevron-up"></i>
 			</span>
 		</div>
-	
-	<!--===============================================================================================-->	
+
+	<!--===============================================================================================-->
 		<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
 	<!--===============================================================================================-->
 		<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
@@ -149,7 +150,7 @@
 					scrollingThreshold: 1000,
 					wheelPropagation: false,
 				});
-	
+
 				$(window).on('resize', function(){
 					ps.update();
 				})
@@ -158,16 +159,18 @@
 	<!--===============================================================================================-->
 		<script th:src="@{/js/main.js}"></script>
 	<!--===============================================================================================-->
+		<script th:src="@{/vendor/sweetalert/sweetalert.min.js}"></script>
 		<script th:inline="javascript">
-			function isLogin(){
-				var s = [[${session.loginUser}]];
-				if (s === null) {
-					alert('用户名或密码错误，请重新登陆！');
-				}
-				else {
-					alert('登陆成功');
-				}
-			}
+			$('.js-login').each(function(){
+				var msg = [[${msg}]];
+
+				window.onload = function(){
+					swal(msg);
+
+					$(this).addClass('js-login');
+					$(this).off('click');
+				};
+			});
 		</script>
 	</body>
 </html>

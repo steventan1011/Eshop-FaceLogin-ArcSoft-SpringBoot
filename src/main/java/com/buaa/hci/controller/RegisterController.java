@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -34,7 +35,9 @@ public class RegisterController {
     private UserMapper userMapper;
 
     @GetMapping("/register")
-    public String register(Model model) {
+    public String register(Model model, HttpSession session) {
+        if (session.getAttribute("loginUser")  != null)
+            return "redirect:/index";
         return "register";
     }
 
@@ -52,20 +55,38 @@ public class RegisterController {
             return "register";
         }
 
-        Base64Req base64Req = new Base64Req();
-        base64Req.setBase64(photo);
-        baseToImg.GenerateImage(base64Req.getBase64(), ResourceUtils.getURL("src\\main\\resources\\static\\faceImage").getPath() + "\\" + username + ".png");
-
         User user = new User();
         user.setEmail(username);
         user.setPassword(password);
-        user.setPhotoname(username + ".png");
+
+        if (photo != "") {
+            Base64Req base64Req = new Base64Req();
+            base64Req.setBase64(photo);
+            baseToImg.GenerateImage(base64Req.getBase64(), ResourceUtils.getURL("src\\main\\resources\\static\\faceImage").getPath() + "\\" + username + ".png");
+
+            // 检测图片是否有人脸信息
+            getFace getFace = new getFace();
+            int faceNum = getFace.registerDetectFaceNum(username + ".png");
+            if (faceNum == 0) {
+                model.addAttribute("msg", "抱歉，未检测到人脸，请重新注册");
+                return "register";
+            } else if (faceNum > 1) {
+                model.addAttribute("msg", "抱歉，检测到多张人脸，请重新注册");
+                return "register";
+            }
+            user.setPhotoname(username + ".png");
+        }
+
         int insert = userMapper.insert(user);
 
-        if (insert == 1)
+        if (insert == 1) {
+            model.addAttribute("msg", "注册成功");
             return "login";
-        else
+        }
+        else {
+            model.addAttribute("msg", "注册失败，数据库出现问题");
             return "register";
+        }
 
 
     }

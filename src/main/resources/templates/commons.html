@@ -54,12 +54,12 @@
                         <li th:class="${activeUri=='index.html'?'active-menu':''}">
                             <a th:href="@{/index}">主页</a>
                         </li>
-                        <li th:class="${activeUri=='product.html'?'active-menu':''}">
+                        <li th:class="${activeUri=='product.html'?'active-menu label1':'label1'}" data-label1="hot">
                             <a th:href="@{/product}">市集</a>
                         </li>
-                        <li th:class="${activeUri=='offer-page.html'?'active-menu label1':'label1'}"  data-label1="hot">
-                            <a th:href="@{/index}">活动</a>
-                        </li>
+<!--                        <li th:class="${activeUri=='offer-page.html'?'active-menu label1':'label1'}"  data-label1="hot">-->
+<!--                            <a href="#">活动</a>-->
+<!--                        </li>-->
 
                         <li th:class="${activeUri=='contact.html'?'active-menu':''}">
                             <a th:href="@{/contact}">联系我们</a>
@@ -69,33 +69,37 @@
 
                 <!-- Icon header -->
                 <div class="wrap-icon-header flex-w flex-r-m h-full">
-                    <div class="menu-desktop">
-                        <div class="main-menu" th:if="${session.loginUser!=null}">
-                            欢迎您，[[${session.loginUser}]]
-                        </div>
-                    </div>
+
                     <div class="flex-c-m h-full p-r-24">
                         <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
                             <i class="zmdi zmdi-search"></i>
                         </div>
                     </div>
 
-<!--                    <div th:class="${activeUri=='shopping-cart.html'?'active-menu':''}">-->
+                    <div>
                         <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
                             <div id="test" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart " data-toggle="modal" data-notify="0">
                                 <i class="zmdi zmdi-shopping-cart"></i>
                             </div>
                         </div>
-<!--                    </div>-->
+                    </div>
 
-<!--                    <div th:class="${activeUri=='wishlist.html'?'active-menu':''}">-->
-                        <div class="flex-c-m h-full p-r-24">
-                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11">
-                                <a th:href="@{/shoping-cart}" class="zmdi zmdi-favorite"></a>
-                            </div>
+                    <div class="flex-c-m h-full p-r-24">
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11">
+                            <a style="color: #0b0b0b" href="" class="zmdi zmdi-favorite"></a>
                         </div>
-<!--                    </div>-->
+                    </div>
 
+                    <div class="menu-desktop">
+                        <ul class="main-menu" th:if="${session.loginUser!=null}">
+                            <li th:if="${session.loginFace=='true'}">
+                                <a th:href="@{/successLoginFace}">欢迎您，[[${session.loginUser}]]</a>
+                            </li>
+                            <li th:if="${session.loginFace=='false'}">
+                                <a>欢迎您，[[${session.loginUser}]]</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -143,13 +147,13 @@
                 </span>
             </li>
 
-            <li>
+            <li class="active-menu">
                 <a th:href="@{/product}">市集</a>
             </li>
 
-            <li class="active-menu">
-                <a th:href="@{/offer-page}">活动</a>
-            </li>
+<!--            <li class="active-menu">-->
+<!--                <a href="#">活动</a>-->
+<!--            </li>-->
             <li>
                 <a th:href="@{/contact}">联系我们</a>
             </li>
@@ -167,7 +171,7 @@
                 <button class="flex-c-m trans-04">
                     <i class="zmdi zmdi-search"></i>
                 </button>
-                <input class="plh3" type="text" name="search" placeholder="查找...">
+                <input class="plh3" type="text" name="search" placeholder="搜索...">
             </form>
         </div>
     </div>
@@ -193,7 +197,7 @@
         <!-- Modal -->
 
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content tableview">
+            <div class="modal-content tableview" style="border:none">
 
                 <div class="modal-body">
                     <table class="show-cart table">
@@ -218,7 +222,7 @@
                     </a>
 
                     <a th:href="@{/shoping-cart}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-                        退出
+                        支付
                     </a>
                 </div>
             </div>
@@ -270,20 +274,20 @@
 
                 <ul>
                     <li class="p-b-10">
-                        <a class="stext-107 cl7 hov-cl1 trans-04">
+                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
                             微博号：航集市
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a class="stext-107 cl7 hov-cl1 trans-04">
+                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
                             公众号：航集市
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a class="stext-107 cl7 hov-cl1 trans-04">
-                            bilibili：@航小柿
+                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                            bilibili：航小柿
                         </a>
                     </li>
 
@@ -302,17 +306,17 @@
                 </p>
 
                 <div class="p-t-27">
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-facebook"></i>
-                    </a>
+<!--                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">-->
+<!--                        <i class="fa fa-facebook"></i>-->
+<!--                    </a>-->
 
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-instagram"></i>
-                    </a>
+<!--                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">-->
+<!--                        <i class="fa fa-instagram"></i>-->
+<!--                    </a>-->
 
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-pinterest-p"></i>
-                    </a>
+<!--                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">-->
+<!--                        <i class="fa fa-pinterest-p"></i>-->
+<!--                    </a>-->
                 </div>
             </div>
 

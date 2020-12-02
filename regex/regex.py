@@ -22,16 +22,15 @@ def regex(file):
     html_file = open(file, 'r', encoding='utf-8')
     html = html_file.read()
 
-    pattern1 = '( href=\")(.+?).html\"'
-    # pattern2 = '(th:href=\")(.+?)\"'
+    pattern1 = '( href=\")(.+?)\"'
+    pattern2 = '(th:href=\")@{(.+?)}\"'
     pattern3 = '( src=\")(.+?)\"'
-    # pattern4 = '(th:src=\")(.+?)\"'
+    pattern4 = '(th:src=\")@{(.+?)}\"'
 
-
+    html = re.sub(pattern2, lambda m: m.group(1) + '@{' + m.group(2) + '}"', html)
+    html = re.sub(pattern4, lambda m: m.group(1) + '@{' + m.group(2) + '}"', html)
     html = re.sub(pattern1, lambda m: ' th:href=\"' + '@{/' + m.group(2) + '}"', html)
-    # html = re.sub(pattern2, lambda m: m.group(1) + '@{' + m.group(2) + '}"', html)
     html = re.sub(pattern3, lambda m: ' th:src=\"' + '@{/' + m.group(2) + '}"', html)
-    # html = re.sub(pattern4, lambda m: m.group(1) + '@{' + m.group(2) + '}"', html)
 
     with open(file, 'w', encoding='utf-8') as file_object:
         file_object.write(html)

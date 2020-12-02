@@ -68,39 +68,55 @@
 <section class="bg0 p-t-104 p-b-116">
     <div class="container">
         <div class="flex-c flex-tr">
-            <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-                <form method="GET" th:action="@{/loginFaceAction}">
+            <div class="size-300 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+                <form method="GET" th:action="@{/index}">
                     <h4 class="mtext-105 cl2 txt-center p-b-30">
                         恭喜，您已成功登录！
                     </h4>
                     <div class="form-row mb-4">
-                        您的邮箱：[[${email}]]
+                        您的邮箱：[[${session.email}]]
                     </div>
                     <div class="form-row mb-4">
-                        照片相似度：[[${similarity}]]
+                        照片相似度：[[${session.similarity}]]
                     </div>
                     <div class="form-row mb-4">
-                        预测性别：[[${gender}]]
+                        预测性别：[[${session.gender}]]
                     </div>
                     <div class="form-row mb-4">
-                        预测年龄：[[${age}]]
+                        预测年龄：[[${session.age}]]
                     </div>
-                    <div class="form-row mb-4">
-                        3D角度信息：[[${dimension}]]
-                    </div>
-                    <div class="form-row mb-4">
-                        RGB活体信息：[[${livenessInfo}]]
-                    </div>
+<!--                    <div class="form-row mb-4">-->
+<!--                        3D角度信息：[[${session.dimension}]]-->
+<!--                    </div>-->
+<!--                    <div class="form-row mb-4">-->
+<!--                        RGB活体信息：[[${session.livenessInfo}]]-->
+<!--                    </div>-->
+
 
                     <div class="form-row mb-4">
-                        登录使用图片：
-                        <img th:src="@{/faceImage/tmp/{face1}(face1=${face1})}" width="500px" height="500px" />
-                    </div>
-                    <div>
-                        数据库存储图片：
-                        <img th:src="@{/faceImage/{face2}(face2=${face2})}" width="500px" height="500px" />
-                    </div>
+                        <div class="col">
+                            <div class="row">
+                                <p style="margin-left: auto; margin-right: auto;">
+                                    登录使用图片：
+                                </p>
+                            </div>
+                            <div class="row">
+                                <img th:src="@{/faceImage/tmp/{face1}(face1=${session.face1})}" width="320px" height="240px" />                        </div>
+                            </div>
+                        <div class="col">
+                            <div class="row">
+                                <p style="margin-left: auto; margin-right: auto;">
+                                    数据库存储图片：
+                                </p>
+                            </div>
+                            <div class="row">
+                                <img th:src="@{/faceImage/{face2}(face2=${session.face2})}" width="320px" height="240px" />                        </div>
+                            </div>
+                        </div>
 
+                    <button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" type="submit">
+                        返回主页
+                    </button>
                 </form>
             </div>
 
@@ -180,8 +196,8 @@
     function getMedia() {
         let constraints = {
             video: {
-                width: 500,
-                height: 500
+                width: 320,
+                height: 240
             },
             audio: true
         };
@@ -205,7 +221,7 @@
         //获得Canvas对象
         let canvas = document.getElementById("canvas");
         let ctx = canvas.getContext('2d');
-        ctx.drawImage(video, 0, 0, 500, 500);
+        ctx.drawImage(video, 0, 0, 320, 240);
         ImageData = canvas.toDataURL();
         var photo = ImageData.substr(22);
         document.getElementById("photo").value = photo;

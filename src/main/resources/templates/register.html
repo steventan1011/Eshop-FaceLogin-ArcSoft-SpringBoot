@@ -4,7 +4,7 @@
 	<title>航集市 | 注册</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -16,13 +16,13 @@
 	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
@@ -78,13 +78,18 @@
 		}
 		.btn-info {
 			color: #fff;
-			background-color: #5bc0de;
-			border-color: #46b8da;
+			background-color: #717fe0 ;
+			border-color: #717fe0;
+		}
+		.btn-info:hover {
+			color: #fff;
+			background-color: #330099;
+			border-color: #330099;
 		}
 	</style>
 </head>
 <body class="animsition">
-	
+
 	<!-- Header -->
 	<div th:replace="commons::header"></div>
 
@@ -93,16 +98,18 @@
 
 
 	<section class="bg0 p-t-104 p-b-116">
+		<div class="js-msg" th:if="${msg}!=null"></div>
+
 			<div class="container">
 				<div class="flex-c flex-tr">
-				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+				<div class="size-300 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
 					<form method="POST" th:action="@{/registerAction}">
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
+<!--							<p>-->
+<!--								[[${msg}]]-->
+<!--							</p>-->
 							请注册
                         </h4>
-						<h5 class=""txt-center>
-							[[${msg}]]
-						</h5>
 							<div class="form-row mb-4">
 <!--								<div class="col">-->
 <!--									 <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="昵称" required>-->
@@ -168,13 +175,21 @@
 
 							<div class="form-row mb-4">
 								<div class="col">
-									<input class="btn btn-info" id="input" type="button" title="开启摄像头" value="开启摄像头" onclick="getMedia()"/>
+									<div class="row">
+										<input style="margin-left: auto; margin-right: auto;" class="btn btn-info" id="input" type="button" title="开启摄像头" value="开启摄像头" onclick="getMedia()"/>
+									</div>
+									<div class="row">
+										<video id="video" width="320px" height="240px" autoplay="autoplay"></video>
+									</div>
 								</div>
 								<div class="col">
-									<input class="btn btn-info" id="snap" type="button" title="拍照并保存" value="拍照并保存" onclick="takePhoto()"/>
+									<div class="row xt-center">
+										<input style="margin-left: auto; margin-right: auto;" class="btn btn-info" id="snap" type="button" title="拍照并保存" value="拍照并保存" onclick="takePhoto()"/>
+									</div>
+									<div class="row">
+										<canvas id="canvas" width="320px" height="240px"></canvas>
+									</div>
 								</div>
-								<video id="video" width="500px" height="500px" autoplay="autoplay"></video>
-								<canvas id="canvas" width="500px" height="500px"></canvas>
 								<input id="photo" name="photo" type="hidden">
 							</div>
 
@@ -195,9 +210,9 @@
 								<h6 class="mtext-20 cl2 txt-center p-b-30">已注册账号?<a th:href="@{/login}">登录</a></h6>
 							</div>
 						</div>
-						
-					</form> 
- 
+
+					</form>
+
 				</div>
 
 			</div>
@@ -217,9 +232,9 @@
 	</div>
 
 	<!-- Modal1 -->
-	
 
-<!--===============================================================================================-->	
+
+<!--===============================================================================================-->
 	<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
 <!--===============================================================================================-->
 	<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
@@ -301,7 +316,7 @@
 				$(this).off('click');
 			});
 		});
-        
+
 
 
 		/*---------------------------------------------*/
@@ -312,7 +327,7 @@
 				swal(nameProduct, "is added to cart !", "success");
 			});
 		});
-	
+
 	</script>
 <!--===============================================================================================-->
 	<script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
@@ -392,7 +407,7 @@
 //     // If the data is too short
 //     // display the following error message.
 //     emailError.textContent = `Email should be at least ${ email.minLength } characters; you entered ${ email.value.length }.`;
-//   } 
+//   }
 
 //   // Set the styling appropriately
 //   emailError.className = 'error active';
@@ -411,7 +426,7 @@
 //     // If the data is too short
 //     // display the following error message.
 //     passwordError.textContent = `Password should be at least ${ password.minLength } characters; you entered ${ password.value.length }.`;
-//   } 
+//   }
 
 //   // Set the styling appropriately
 //   passwordError.className = 'error active';
@@ -431,8 +446,8 @@
 		function getMedia() {
 			let constraints = {
 				video: {
-					width: 500,
-					height: 500
+					width: 320,
+					height: 240
 				},
 				audio: true
 			};
@@ -456,13 +471,26 @@
 			//获得Canvas对象
 			let canvas = document.getElementById("canvas");
 			let ctx = canvas.getContext('2d');
-			ctx.drawImage(video, 0, 0, 500, 500);
+			ctx.drawImage(video, 0, 0, 320, 240);
 			ImageData = canvas.toDataURL();
 			var photo = ImageData.substr(22);
 			document.getElementById("photo").value = photo;
 		}
 
 	</script>
+	<!--===============================================================================================-->
+	<script th:src="@{/vendor/sweetalert/sweetalert.min.js}"></script>
+	<script th:inline="javascript">
+		$('.js-msg').each(function(){
+			var msg = [[${msg}]];
 
+			window.onload = function(){
+				swal(msg);
+
+				$(this).addClass('js-msg');
+				$(this).off('click');
+			};
+		});
+	</script>
 </body>
 </html>
