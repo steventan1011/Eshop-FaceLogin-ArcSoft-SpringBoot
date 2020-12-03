@@ -1,16 +1,21 @@
 server:
   port: 8443  #注意，这里是https访问的的端口号
   ssl:
+<<<<<<< HEAD
+    key-store:
+    key-store-password:
+=======
     key-store: file:C:\Users\steve\OneDrive\LabData\计算机学院\研一上学期\人机交互\Eshop-SpringBoot\src\main\resources\client.p12
     key-store-password: 12345678
+>>>>>>> 49f154ab2a60496bdee6289f94cfb7a711c9fbb5
     key-store-type: PKCS12
     key-alias: client
 
 # mysql
 spring:
   datasource:
-    username: root
-    password: root
+    username:
+    password:
     url: jdbc:mysql://localhost:3306/hci?userSSL=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     # mysql8:  url: url: jdbc:mysql//localhost:3306/mybatis_plus?userSSL=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver

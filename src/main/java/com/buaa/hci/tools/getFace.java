@@ -27,12 +27,18 @@ import static com.arcsoft.face.toolkit.ImageFactory.getRGBData;
 @Slf4j
 public class getFace {
     //从官网获取
+<<<<<<< HEAD
+    private static String appId = "";
+    private static String sdkKey = "";
+
+=======
     // laptop
 //    private static String appId = "FiF5cBCTvCfxFV5NE5f9fSJrwVLKAp2TH1d9MVYdNNe2";
 //    private static String sdkKey = "DZmvFhHkHA4vNDGyLSaZ2QwqQYQ2xHRVMdYfkA7BXV84";
     // lab computer
     private static String appId = "8mifisFsyLfPshZ3kwD9dH3ZrY1BgnEGKaNNvGHjjSET";
     private static String sdkKey = "5hm1KujKsW8Rq9y3BB5GkWWinFEXXdV5ZgrPhqARBcpF";
+>>>>>>> 49f154ab2a60496bdee6289f94cfb7a711c9fbb5
 
     public static String faceconfig;
     public static String face1;   // tmp文件夹内的 登录用
