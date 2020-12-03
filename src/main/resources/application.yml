@@ -1,13 +1,8 @@
 server:
   port: 8443  #注意，这里是https访问的的端口号
   ssl:
-<<<<<<< HEAD
     key-store:
     key-store-password:
-=======
-    key-store: file:C:\Users\steve\OneDrive\LabData\计算机学院\研一上学期\人机交互\Eshop-SpringBoot\src\main\resources\client.p12
-    key-store-password: 12345678
->>>>>>> 49f154ab2a60496bdee6289f94cfb7a711c9fbb5
     key-store-type: PKCS12
     key-alias: client
 
